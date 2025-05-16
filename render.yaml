@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: corarte2025
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn Corarte_2025.wsgi:application"

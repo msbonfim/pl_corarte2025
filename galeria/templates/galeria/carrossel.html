@@ -1,0 +1,12 @@
+{% load static %}
+
+<article class="container">
+  <div class="owl-carousel owl-theme">
+    {% for imagem in imagens %}
+      <div class="item">
+        <img src="{{ imagem.imagem.url }}" alt="{{ imagem.titulo }}" class="img-fluid">
+        <h5 class="text-center mt-2">{{ imagem.titulo }}</h5>
+      </div>
+    {% endfor %}
+  </div>
+</article>

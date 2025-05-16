@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="banner">
+        <img src="{% static 'img/banner/banner.webp' %}" alt="Banner" class="img-fluid">
+    </section>
+    <section class="sobre">
+        <article class="container">
+            <div class="row">
+                <div class="col-6 content">
+                    <div class="box-txt">
+                        <h1>
+                            Sobre
+                        </h1>
+                        <p>
+                            A CorArte é uma associação de artesãos que atua em Cordeirópolis desde 2021. Unidos pelo propósito de fortalecer a produção artesanal local, seus membros colaboram para fomentar o artesanato, oferecer cursos e promover feiras de venda. Um dos principais objetivos da associação é a construção de um espaço próprio, onde possam desenvolver suas atividades com maior estrutura e visibilidade.
+                        </p>
+                    </div>
+                    <div class="cta">
+                        <a class="btn_cta" href="">Clique aqui e saiba mais</a>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="box-img">
+                        <img src="{% static 'img/sobre/sobre.webp' %}" alt="Banner" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+    <section class="eventos">
+        <article class="container">
+            <h2 class="title">
+                Eventos
+            </h2>
+            {% include 'eventos/lista_eventos.html' %}
+        </article>
+    </section>
+    <section class="expositores">
+        <article class="container">
+            <h2 class="title">
+                Expositores
+            </h2>
+        </article>
+    </section>
+    <section class="galeria">
+        <h2 class="title">
+            Galeria
+        </h2>
+        {% include 'galeria/carrossel.html' with imagens=imagens %}
+    </section>
+{% endblock %}
