@@ -1,0 +1,93 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<section class="eventos-section pt-5">
+    <h1>Eventos</h1>
+    <div class="container">
+        
+        {% if eventos_futuros %}
+        <div class="row">
+            {% for evento in eventos_futuros %}
+            <div class="col-md-12 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="row g-0">
+                        <div class="col-md-3 bg-primary text-white p-4 d-flex flex-column justify-content-center">
+                            <div class="text-center">
+                                <div class="display-6 fw-bold">{{ evento.data|date:"d" }}</div>
+                                <div class="fs-5">{{ evento.data|date:"F"|title }}</div>
+                                <div class="fs-6">{{ evento.data|date:"Y" }}</div>
+                                <div class="mt-2">
+                                    <span class="badge bg-light text-dark">{{ evento.data|date:"H:i" }}h</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">{{ evento.titulo }}</h5>
+                                <p class="card-text">{{ evento.descricao|truncatechars:300 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center">
+            Nenhum evento programado no momento. Volte em breve!
+        </div>
+        {% endif %}
+
+        {% if eventos_passados %}
+        <h3 class="text-center mt-5 mb-4">Eventos Anteriores</h3>
+        <div class="row">
+            {% for evento in eventos_passados|slice:":5" %}
+            <div class="col-md-6 mb-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title mb-0">{{ evento.titulo }}</h5>
+                            <span class="badge bg-secondary">
+                                {{ evento.data|date:"d/m/Y" }}
+                            </span>
+                        </div>
+                        <p class="card-text text-muted">{{ evento.descricao|truncatechars:150 }}</p>
+                        <div class="text-end">
+                            <a href="#" class="btn btn-sm btn-outline-primary">Ver detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+    .eventos-section {
+        padding: 3rem 0;
+        background-color: #f8f9fa;
+    }
+    .card {
+        transition: transform 0.3s;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .bg-primary {
+        background-color: #0d6efd !important;
+    }
+    .mes-ptbr {
+        text-transform: capitalize;
+    }
+</style>
+
+{% load i18n %}
+{% language 'pt-br' %}
+    {# Isso fará com que as tags de template date usem localização pt-br #}
+{% endlanguage %}
+{% endblock %}
