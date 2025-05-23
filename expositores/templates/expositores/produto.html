@@ -1,0 +1,75 @@
+{% extends 'base.html' %} 
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ produto.imagem.url }}" class="img-fluid rounded" alt="{{ produto.nome }}">
+        </div>
+        <div class="col-md-6">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'expositores:lista' %}">Expositores</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'expositores:detalhe' produto.expositor.slug %}">
+                            {{ produto.expositor.nome }}
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ produto.nome }}</li>
+                </ol>
+            </nav>
+            
+            <h1>{{ produto.nome }}</h1>
+            
+            {% if produto.categoria %}
+            <span class="badge bg-primary mb-3">{{ produto.categoria }}</span>
+            {% endif %}
+            
+            <p class="h3 text-primary mb-4">R$ {{ produto.preco }}</p>
+            
+            <h3 class="mt-4">Descrição</h3>
+            <p class="lead">{{ produto.descricao }}</p>
+            
+            <!-- <div class="d-grid gap-2 d-md-flex mt-5">
+                <button class="btn btn-primary btn-lg me-md-2">
+                    <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                </button>
+                <a href="{% url 'expositores:detalhe' produto.expositor.slug %}" class="btn btn-outline-secondary btn-lg">
+                    Ver outros produtos
+                </a>
+            </div> -->
+        </div>
+    </div>
+    
+    {% if produtos_relacionados %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2>Produtos Relacionados</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for produto in produtos_relacionados %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ produto.imagem.url }}" class="card-img-top produto-imagem" alt="{{ produto.nome }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ produto.nome }}</h5>
+                            <p class="card-text">{{ produto.descricao|truncatewords:15 }}</p>
+                            <p class="h5 text-primary">R$ {{ produto.preco }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="{% url 'expositores:detalhe_produto' produto.pk %}" class="btn btn-sm btn-outline-primary">
+                                Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
