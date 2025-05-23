@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}{% endblock %}  {# Se quiser esconder a navbar da base #}
+
+{% block content %}
+  <section class="galeria">
+      {% include 'galeria/carrossel.html' with imagens=imagens %}
+  </section>
+{% endblock %}
