@@ -19,6 +19,8 @@ nav.navbar {
   height: var(--nav-height);
   line-height: var(--nav-height);
 }
+.navbar-expand-lg .navbar-nav .nav-link{color:#ffffff;}
+    .navbar-expand-lg .navbar-collapse {justify-content: flex-end;}
 nav.navbar .box-img {
   height: calc(var(--nav-height) * 2 / 3);
 }
